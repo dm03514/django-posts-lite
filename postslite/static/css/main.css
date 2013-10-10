@@ -1,2 +1,27 @@
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+.header {
+    overflow: auto;
+}
+.header li {
+    list-style-type: none;
+    margin: 0px 10px;
+}
+.header li {
+    float: left;
+}
 .posts li {
+    border: 1px solid black;
+    overflow: auto;
+}
+.posts li .left,
+.posts li .right {
+    float: left;
+}
+.posts li .left img {
+    width: 70px;
+}
+.posts li .right {
 }
