@@ -2,8 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from posts.forms import FullPostForm
+from posts.models import Post
 
 
 @login_required
@@ -34,8 +36,11 @@ def display_post(request, post_id):
     pass
 
 
-def list_posts(request):
+class PostListView(ListView):
     """
     Lists all posts, ordered by rating desc / datetime created desc.
     """
-    pass
+    model = Post
+    template_name = 'post_list.html'
+    paginate_by = 10
+    context_object_name = 'post_list'

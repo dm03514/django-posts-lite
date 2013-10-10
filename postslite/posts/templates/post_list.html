@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if post_list %}
+        <ul class="posts">
+            {% for post in post_list %}
+                <li>
+                    <div class="left">
+                        <a href="{{ post.link }}">
+                            <!-- 
+                                determine if link is photo or not??
+                                right now __assume__ that all links are 
+                                images
+                            -->
+                            <img src="{{ post.link }}" />
+                        </a>
+                    </div>
+                    <div class="right">
+                        <p>{{ post.created_by }}</p>
+                        <p>{{ post.title }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        No More posts
+    {% endif %}
+{% endblock %}
