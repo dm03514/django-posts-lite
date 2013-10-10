@@ -1,4 +1,4 @@
-django-articles-lite
+django-posts-lite
 ====================
 
-Lightweight Articles app which allows users to post articles, vote up articles, and comment on articles
+Lightweight subreddit-like app which allows users to create posts, vote up posts, and comment on posts 
