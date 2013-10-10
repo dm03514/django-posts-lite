@@ -6,4 +6,4 @@ from posts.models import Post
 class FullPostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ('link', 'title')
+        fields = ('link', 'text', 'title')
