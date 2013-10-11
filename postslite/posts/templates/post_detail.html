@@ -9,12 +9,10 @@
             <div class="span6">
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
-                    var disqus_shortname = 'djangopostslite'; 
-                    var disqus_identifier = 'post_{{ post.pk }}';
-                    var disqus_url = '{{ URL_ROOT }}{{ post.get_absolute_url }}';
+                    var disqus_shortname = 'djangopostsnewtest'; 
                     var disqus_title = '{{ post.title }}';
-
-                    // required: replace example with your forum shortname
+                    var disqus_url = '{{ post.get_absolute_url }}';
+                    var disqus_identifier = '{{ post.pk }}_post';
 
                     /* * * DON'T EDIT BELOW THIS LINE * * */
                     (function() {
