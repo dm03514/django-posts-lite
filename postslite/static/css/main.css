@@ -27,6 +27,10 @@ ul {
 .post .left img {
     width: 70px;
 }
+.post .vote {
+    float: left;
+    width: 70px; 
+}
 .errorList {
     color: red;
 }

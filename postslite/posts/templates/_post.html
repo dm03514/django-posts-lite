@@ -1,4 +1,11 @@
 <div class="post">
+    <div class="vote">
+        <a href="{{ post.get_upvote_url }}">up vote</a>
+        <br />
+        {{ post.get_vote_score }}
+        <br />
+        <a href="{{ post.get_downvote_url }}">down vote</a>
+    </div>
     <div class="left">
         <a href="{{ post.link }}">
             <!-- 
