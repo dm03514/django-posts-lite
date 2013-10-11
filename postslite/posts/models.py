@@ -26,10 +26,9 @@ class Post(models.Model):
     def get_vote_score(self):
         """
         Returns a post rating.
-        q = Vote.objects.filter(key='post', object_id=self.pk).aggregate(Sum('score'))
-        return q['score__sum'] if q['score__sum'] else 0
         """
-        pass
+        q = PostVote.objects.filter(post=self).aggregate(Sum('score'))
+        return q['score__sum'] if q['score__sum'] else 0
 
     def get_absolute_url(self):
         return reverse('posts:post_detail', args=[str(self.pk)])
@@ -43,7 +42,7 @@ class Post(models.Model):
 
 class PostVote(models.Model):
     created_datetime = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, unique=True)
+    created_by = models.ForeignKey(User)
     score = models.IntegerField()
     post = models.ForeignKey(Post)
 
