@@ -12,16 +12,21 @@ ul {
 .header li {
     float: left;
 }
-.posts li {
+.posts {
+    list-style-type: none;
+}
+.post {
     border: 1px solid black;
+    margin: 5px 0px;
     overflow: auto;
 }
-.posts li .left,
-.posts li .right {
+.post .left,
+.post .right {
     float: left;
 }
-.posts li .left img {
+.post .left img {
     width: 70px;
 }
-.posts li .right {
+.errorList {
+    color: red;
 }

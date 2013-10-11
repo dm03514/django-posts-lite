@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from posts.forms import FullPostForm
 from posts.models import Post
@@ -29,11 +29,13 @@ def create_post(request):
     })
 
 
-def display_post(request, post_id): 
+class PostDetailView(DetailView):
     """
-    Shows an individual post.
+    Display an individual post.
     """
-    pass
+    model = Post
+    template_name = 'post_detail.html'
+    context_object_name = 'post'
 
 
 class PostListView(ListView):

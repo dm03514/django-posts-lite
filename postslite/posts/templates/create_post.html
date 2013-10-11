@@ -2,25 +2,15 @@
 {% block content %}
     <div class="row-fluid">
         <div class="span6">
-            {{ form.errors }}
-            {% if form.errors %}
-                <div id="form-error">
-                    <p>The operation could not be performed because one or more error(s) occurred.<br />Please resubmit the form after making the following changes:</p>
-                    <ul>
-                        {% for field in form %}
-                            {% if field.errors %}
-                                <li>
-                                    {{ field.errors|striptags }}
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
             <form action="{% url 'posts:create_post' %}" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit" />
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                {% endfor %}
+                <p><input type="submit" value="Send message" /></p>
             </form>
         </div>
     </div>

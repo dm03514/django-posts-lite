@@ -6,23 +6,7 @@
                 <ul class="posts">
                     {% for post in post_list %}
                         <li>
-                            <div class="left">
-                                <a href="{{ post.link }}">
-                                    <!-- 
-                                        determine if link is photo or not??
-                                        right now __assume__ that all links are 
-                                        images
-                                    -->
-                                    <img src="{{ post.link }}" />
-                                </a>
-                            </div>
-                            <div class="right">
-                                <h4>{{ post.title }}</h4>
-                                <p>
-                                    <b>posted by: </b>{{ post.created_by }}
-                                    {{ post.created_datetime|timesince }} ago
-                                </p>
-                            </div>
+                            {% include '_post.html' %}
                         </li>
                     {% endfor %}
                 </ul>

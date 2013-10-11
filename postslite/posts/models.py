@@ -11,7 +11,7 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
 
     def get_absolute_url(self):
-        return reverse('posts:display_post', args=[str(self.pk)])
+        return reverse('posts:post_detail', args=[str(self.pk)])
 
     def __unicode__(self):
         """
