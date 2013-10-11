@@ -18,10 +18,3 @@ class Post(models.Model):
         Displays human readable representation.
         """
         return '{} - {}'.format(self.pk, self.title)
-
-
-class PostVote(models.Model):
-    created_datetime = models.DateTimeField(auto_now_add=True)
-    vote = models.IntegerField()
-    created_by = models.ForeignKey(User)
-    post = models.ForeignKey(Post)
