@@ -21,6 +21,10 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.created_by = request.user
             new_post.save()
+            # creating a PostVote of 0
+            # This might be better off as a signal
+            vote = PostVote(created_by=request.user, score=0, post=new_post)
+            vote.save()
             return HttpResponseRedirect(new_post.get_absolute_url())
     else:
         form = FullPostForm()

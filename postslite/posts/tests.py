@@ -27,6 +27,21 @@ class PostsTest(TestCase):
         self.assertIsInstance(response.context['form'], FullPostForm)
         #import ipdb; ipdb.set_trace();
 
+    def test_create_post_post_request_success(self):
+        """
+        Tests that anew post can be created successfully.
+        """
+        post_count = Post.objects.count()
+        votes_count = PostVote.objects.count()
+        self.client.login(username=self.username, 
+                          password=self.password)
+        response = self.client.post(reverse('posts:create_post'), {
+            'text': 'hello test',
+            'title': 'hello test'
+        })
+        self.assertEqual(Post.objects.count(), post_count + 1)
+        self.assertEqual(PostVote.objects.count(), votes_count + 1)
+
     def test_votepost_create_success(self):
         """
         Tests that a new vote can successfully be created
@@ -56,6 +71,8 @@ class PostsTest(TestCase):
         post_three.save()
         # give post_one a vote so it should show up first in ordering
         vote = PostVote(created_by=self.test_user, score=1, post=post_one)
+        vote.save()
+        vote = PostVote(created_by=self.test_user, score=0, post=post_two)
         vote.save()
         vote = PostVote(created_by=self.test_user, score=-1, post=post_three)
         vote.save()

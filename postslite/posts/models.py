@@ -46,7 +46,7 @@ class Post(models.Model):
 
 class PostVote(models.Model):
     created_datetime = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User)
+    created_by = models.ForeignKey(User, null=True, blank=True)
     score = models.IntegerField()
     post = models.ForeignKey(Post)
 
