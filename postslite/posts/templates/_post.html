@@ -25,6 +25,9 @@
         <p>
             <b>posted by: </b>{{ post.created_by }}
             {{ post.created_datetime|timesince }} ago
+            <a href="{{ post.get_absolute_url }}"
+                data-disqus-identifier="{{ post.pk }}_post">
+            </a>
         </p>
     </div>
 </div>
