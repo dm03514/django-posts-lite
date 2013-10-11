@@ -1,9 +1,13 @@
 import os 
 
+import django.conf.global_settings as DEFAULT_SETTINGS
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..')
+
+URL_ROOT = ''
 
 ADMINS = (
     ('Daniel Mican', 'dm03514@gmail.com'),
@@ -115,6 +119,10 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_ROOT, 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+    'posts.context_processors.url_root',
 )
 
 INSTALLED_APPS = (
