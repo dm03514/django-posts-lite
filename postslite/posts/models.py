@@ -3,6 +3,8 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Sum
 
+from posts.managers import PostOrderManager
+
 
 class Post(models.Model):
     created_by = models.ForeignKey(User)
@@ -10,6 +12,8 @@ class Post(models.Model):
     link = models.URLField(blank=True, null=True)
     text = models.TextField(blank=True, null=True)
     title = models.CharField(max_length=256)
+
+    objects = PostOrderManager()
 
     def get_upvote_url(self):
         """
