@@ -136,7 +136,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'django_nose',
     'posts',
-    'votes',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

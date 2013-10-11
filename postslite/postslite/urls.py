@@ -15,6 +15,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^posts/', include('posts.urls', namespace='posts')),
-    url(r'^votes/', include('votes.urls', namespace='votes')),
     (r'^$', RedirectView.as_view(url='/posts/')),
 )
