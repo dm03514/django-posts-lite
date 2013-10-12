@@ -75,6 +75,23 @@ class PostDetailView(DetailView):
     template_name = 'post_detail.html'
     context_object_name = 'post'
 
+    def get_context_data(self, **kwargs):
+        """
+        Overriden to check if user has already voted on this post,
+        post will be given an `already_voted` property.
+        """
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        # check if the user is logged in AND there is already a votepost for
+        # this post by the user
+        context['post'].already_voted = False
+        if not self.request.user:
+            return context
+
+        context['post'].already_voted = PostVote.objects.filter(
+                                            created_by=self.request.user.pk,
+                                            post=context['post']).count()
+        return context
+
 
 class PostListView(ListView):
     """
@@ -84,3 +101,20 @@ class PostListView(ListView):
     template_name = 'post_list.html'
     paginate_by = 10
     context_object_name = 'post_list'
+
+    def get_context_data(self, **kwargs):
+        """
+        Overriden to check if user has already voted on this post,
+        post will be given an `already_voted` property.
+        """
+        context = super(PostListView, self).get_context_data(**kwargs)
+        # keep this to one query and put this on the application to combine it
+        user_votes = PostVote.objects.filter(created_by=self.request.user.pk)
+        # index user_votes by post id
+        user_votes_by_post_id = dict((vote.post.pk, vote) for vote in user_votes)
+        # loop through all the posts and see if this user has voted it
+        for post in context['post_list']:
+            post.already_voted = False
+            if post.pk in user_votes_by_post_id:
+                post.already_voted = True
+        return context

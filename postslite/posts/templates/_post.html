@@ -2,13 +2,13 @@
     <div class="vote">
         Score:
         <br />
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and not post.already_voted%}
             <a href="{{ post.get_upvote_url }}">up vote</a>
         {% endif %}
         <br />
         {{ post.get_vote_score }}
         <br />
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and not post.already_voted%}
             <a href="{{ post.get_downvote_url }}">down vote</a>
         {% endif %}
     </div>
