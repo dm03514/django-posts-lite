@@ -58,13 +58,25 @@ class PostsTest(TestCase):
         vote = PostVote.objects.get(post=post)
         self.assertEqual(vote.score, 1)
 
-
     def test_votepost_create_no_duplicate_post(self):
         """
         Tests that a single user can only create one Vote per post, and that
         making multiple votes will not create duplicate votes.
         """
-        self.fail('not implemented')
+        # create a new post    
+        post = Post(created_by=self.test_user, text='asdfasdf', title='post1')
+        post.save()
+
+        self.client.login(username=self.username, 
+                          password=self.password)
+
+        # vote on the post 3 times
+        votes_count = PostVote.objects.count()
+        NUM_POST_VOTES = 3
+        for i in range(NUM_POST_VOTES):
+            response = self.client.post(reverse('posts:vote', 
+                                                args=[post.pk, 'up']))
+        self.assertEqual(PostVote.objects.count(), votes_count + 1)
 
     def test_vote_order_by_success(self):
         """
