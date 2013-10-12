@@ -15,5 +15,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^posts/', include('posts.urls', namespace='posts')),
+    #url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     (r'^$', RedirectView.as_view(url='/posts/')),
+    
+    url(r'^login/$', 'django.contrib.auth.views.login', {
+            'template_name': 'login.html'
+    }, name='login'),
 )

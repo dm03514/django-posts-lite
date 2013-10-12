@@ -21,7 +21,9 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.created_by = request.user
             new_post.save()
-            # creating a PostVote of 0
+            # creating a PostVote of 0,
+            # A PostVote is created here and initialized to 0 so that the ordering
+            # works correctly...
             # This might be better off as a signal
             vote = PostVote(created_by=request.user, score=0, post=new_post)
             vote.save()

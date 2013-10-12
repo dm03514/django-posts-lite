@@ -58,6 +58,14 @@ class PostsTest(TestCase):
         vote = PostVote.objects.get(post=post)
         self.assertEqual(vote.score, 1)
 
+
+    def test_votepost_create_no_duplicate_post(self):
+        """
+        Tests that a single user can only create one Vote per post, and that
+        making multiple votes will not create duplicate votes.
+        """
+        self.fail('not implemented')
+
     def test_vote_order_by_success(self):
         """
         Tests that posts can be ordered by their votes.

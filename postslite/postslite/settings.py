@@ -122,6 +122,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
     'posts.context_processors.url_root',
 )
 
@@ -170,6 +171,8 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+LOGIN_REDIRECT_URL = '/'
 
 try:
     from local_settings import *

@@ -12,11 +12,15 @@
                     <ul>
                         {% if not user.is_authenticated %}
                             <li>
-                                <a href="">Login</a>
+                                <a href="{% url 'login' %}?next={{ request.get_full_path}}">
+                                    Login
+                                </a>
                             </li>
+                            <!--
                             <li>
                                 <a href="">Signup</a>
                             </li>
+                            -->
                         {% else %}
                             <li>
                                 <a href="{% url 'posts:create_post' %}">New Post</a>
