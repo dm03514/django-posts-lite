@@ -13,14 +13,16 @@
         {% endif %}
     </div>
     <div class="left">
-        <a href="{{ post.link }}">
-            <!-- 
-                determine if link is photo or not??
-                right now __assume__ that all links are 
-                images
-            -->
-            <img src="{{ post.link }}" />
-        </a>
+        {% if post.link %}
+            <a href="{{ post.link }}">
+                <!-- 
+                    determine if link is photo or not??
+                    right now __assume__ that all links are 
+                    images
+                -->
+                <img src="{{ post.link }}" />
+            </a>
+        {% endif %}
     </div>
     <div class="right">
         <h4>
