@@ -81,6 +81,8 @@ class PostDetailView(DetailView):
         post will be given an `already_voted` property.
         """
         context = super(PostDetailView, self).get_context_data(**kwargs)
+        # make sure to mark this as a post_detail for later
+        context['post_type'] = 'post_detail'
         # check if the user is logged in AND there is already a votepost for
         # this post by the user
         context['post'].already_voted = False

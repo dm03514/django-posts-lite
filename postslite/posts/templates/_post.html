@@ -28,6 +28,11 @@
                 {{ post.title }}
             </a>
         </h4>
+        {% if post_type == 'post_detail' and post.text %}
+            <p>
+                {{ post.text }} 
+            </p> 
+        {% endif %}
         <p>
             <b>posted by: </b>{{ post.created_by }}
             {{ post.created_datetime|timesince }} ago
