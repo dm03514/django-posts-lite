@@ -16,11 +16,9 @@
                                     Login
                                 </a>
                             </li>
-                            <!--
                             <li>
-                                <a href="">Signup</a>
+                                <a href="{% url 'accounts:signup' %}">Signup</a>
                             </li>
-                            -->
                         {% else %}
                             <li>
                                 <a href="{% url 'posts:create_post' %}">New Post</a>
