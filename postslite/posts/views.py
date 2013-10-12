@@ -25,7 +25,7 @@ def create_post(request):
             # A PostVote is created here and initialized to 0 so that the ordering
             # works correctly...
             # This might be better off as a signal
-            vote = PostVote(created_by=request.user, score=0, post=new_post)
+            vote = PostVote(score=0, post=new_post)
             vote.save()
             return HttpResponseRedirect(new_post.get_absolute_url())
     else:
@@ -99,7 +99,7 @@ class PostListView(ListView):
     """
     model = Post
     template_name = 'post_list.html'
-    paginate_by = 10
+    paginate_by = 4
     context_object_name = 'post_list'
 
     def get_context_data(self, **kwargs):

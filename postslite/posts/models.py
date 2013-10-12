@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Sum
+from django.utils.text import slugify
 
 from posts.managers import PostOrderManager
 
@@ -36,6 +38,20 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('posts:post_detail', args=[str(self.pk)])
+
+    def get_disqus_id(self):
+        """
+        Returns unique identifier used in disqus.
+        @return string
+        """
+        return '{}_post_{}'.format(self.pk, slugify(self.title))
+
+    def clean(self):
+        """
+        Ensures that user has provided either a `link` AND/OR a `text` value.
+        """
+        if not self.link and not self.text:
+            raise ValidationError('Must include a link AND/OR a text value')
 
     def __unicode__(self):
         """

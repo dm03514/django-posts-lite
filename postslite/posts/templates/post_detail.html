@@ -12,8 +12,8 @@
                     var disqus_shortname = 'djangopoststestdemo'; 
                     var disqus_title = '{{ post.title }}';
                     //var disqus_url = '{{ post.get_absolute_url }}';
-                    var disqus_identifier = '{{ post.pk }}_post';
-                    var disqus_url = 'http://test.com{{ post.pk }}_post';
+                    var disqus_identifier = '{{ post.get_disqus_id }}';
+                    var disqus_url = 'http://test.com{{ post.get_disqus_id }}';
 
                     /* * * DON'T EDIT BELOW THIS LINE * * */
                     (function() {
